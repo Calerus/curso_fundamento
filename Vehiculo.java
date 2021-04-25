@@ -1,17 +1,18 @@
 public class Vehiculo{
-    static Vehiculo [4][4] arreglo_vehiculos;
+    static Vehiculo [][] arreglo_vehiculos;
     static int tamano;
     static int cantidad = 0;
     private String placa;
     private String marca;
     private String color;
     private int valorComercial;
-
+    
     public Vehiculo (){   
-    }  
-
-    public  Vehiculo (String placa, String marca, String color){
-        Vehiculo veh = new Vehiculo (placa, marca, color, 30000000);
+    } 
+    
+    public void dimension (int tam, int cantid){
+        this.tamano = tam*cantid;
+        this.arreglo_vehiculos = new Vehiculo [tam][cantid];
     }
 
     public Vehiculo (String placa, String marca, String color, int valor){
@@ -20,6 +21,12 @@ public class Vehiculo{
         this.color = color;
         this.valorComercial = valor;
         this.cantidad ++; 
+    }
+    
+        public  Vehiculo (String placa, String marca, String color){
+        Vehiculo veh = new Vehiculo (placa, marca, color, 30000000);
+        //System.out.println(veh.getPlaca());
+
     }
 
     public String toString (){
@@ -34,7 +41,7 @@ public class Vehiculo{
           for (int j = 0; j<arreglo_vehiculos[0].length; j++){
             if (arreglo_vehiculos[i][j] != null){
              arreglo_vehiculos[i][j].toString();
-            }
+            }                             
           }
         }    
     }
