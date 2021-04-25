@@ -36,14 +36,16 @@ public class Vehiculo{
             "Valor Comercial: " + this.valorComercial;
     }
 
-    public static void toStringVehiculos (){
+    public static String toStringVehiculos (){
+        String info = "\n";
         for(int i = 0; i<arreglo_vehiculos.length; i++){
           for (int j = 0; j<arreglo_vehiculos[0].length; j++){
             if (arreglo_vehiculos[i][j] != null){
-             arreglo_vehiculos[i][j].toString();
+             info = info + "\n" + arreglo_vehiculos[i][j].toString();
             }                             
           }
         }    
+        return info;
     }
 
     public static int cantidadVehiculos (){
@@ -87,6 +89,5 @@ public class Vehiculo{
         this.valorComercial = vacom; 
     }
 }
-
 
 

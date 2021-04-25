@@ -52,8 +52,9 @@ public class Principalparquea{
                             validacion = true;
                         }
                     }while (!validacion);
-                    
-                    if (sensores.validarDisponibilidad(piso, espacio)){
+                   
+                    do{
+                        if (sensores.validarDisponibilidad(piso, espacio)){
                             System.out.println("Ingrese la placa");
                             scannpe.nextLine();
                             placa = scannpe.nextLine();
@@ -70,26 +71,91 @@ public class Principalparquea{
                             
                             System.out.println(carro.toString());
                             System.out.println(sensor.getEstado());
+                            validacion = true;
                         }
+                    }while (!validacion);    
+                    
+                    break;
+                    
+                case "3": 
+                boolean validacion1 = false;
+                    int piso1 = 0;
+                    int espacio1 = 0;
+                    int valorcarro;
+                    String placas, marcas, colors;
+                    
+                    do{
+                        System.out.println("En que piso desea parquear: ");
+                        piso1 = scannpe.nextInt();
+                        System.out.println("En que espacio del piso desea parquear: ");
+                        espacio1 = scannpe.nextInt();
+                        System.out.println(sensores.validacion (piso1, espacio1));
                         
+                        if (sensores.validacion (piso1, espacio1) == ""){
+                            validacion1 = true;
+                        }
+                    }while (!validacion1);
+                    
+                    do{
+                        if (sensores.validarDisponibilidad(piso1, espacio1)){
+                            System.out.println("Ingrese la placa");
+                            scannpe.nextLine();
+                            placas = scannpe.nextLine();
+                            System.out.println("Ingrese la marca");
+                            marcas = scannpe.nextLine ();
+                            System.out.println("Ingrese el color");
+                            colors = scannpe.nextLine ();
+                            System.out.println("Ingrese el valor del carro");
+                            valorcarro = scannpe.nextInt ();
+                            
+                            Vehiculo carro = new Vehiculo (placas, marcas, colors, valorcarro);
+                            Sensor sensor = new Sensor(1);
+                            
+                            parqueadero.arreglo_vehiculos[piso1][espacio1] = carro;                       
+                            sensores.arreglo_sensor[piso1][espacio1] = sensor;
+                            
+                            System.out.println(carro.toString());
+                            System.out.println(sensor.getEstado());
+                            validacion1 = true;
+                        }
+                    }while (!validacion1);    
+                    break;
+                    
+                    
+                case "4": 
+                    
+                    System.out.println (parqueadero.toStringVehiculos());
                     
                     break;
-                    /*
-                case 3: ...;
+                    
+                case "5": 
+                    
+                    System.out.println ("La cantidad de vehiculos es:" + parqueadero.cantidadVehiculos());
+                
                     break;
                     
-                case 4: ... ;
+                case "6": 
+                    boolean validacion2 = false;
+                    do{
+                        System.out.println("En que piso desea mostrar el estado: ");
+                        piso = scannpe.nextInt();
+                        System.out.println("En que espacio del piso desea mostrar el estado: ");
+                        espacio = scannpe.nextInt();
+                        System.out.println(sensores.validacion (piso, espacio));
+                        
+                        if (sensores.validacion (piso, espacio) == ""){
+                            validacion2 = true;
+                        }
+                    }while (!validacion2);
+                    System.out.println ("el estado del sensor es: " + sensores.arreglo_sensor[piso][espacio].toString());
                     break;
                     
-                case 5: ... ;
+                case "7": 
+                    
+                    System.out.println (sensores.sensoresEstado());
+                
                     break;
                     
-                case 6: ... ;
-                    break;
-                    
-                case 7: ... ;
-                    break;
-                    */
                 default: System.out.println ("Comando incorrecto"); 
                     break;
          }
