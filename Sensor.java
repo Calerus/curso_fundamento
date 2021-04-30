@@ -50,7 +50,9 @@ public class Sensor{
       ArrayList<String> infoSensores = new ArrayList(); 
       for(int i = 0; i<arreglo_sensor.length; i++){
         for (int j = 0; j<arreglo_sensor[0].length; j++){
+            if (arreglo_sensor[i][j]!=null){
             infoSensores.add("Piso: "+i+"\n"+"Fila: "+j+"\n"+"Estado: "+ String.valueOf(arreglo_sensor[i][j].estado));
+          }
         }
       }  
       return infoSensores;  

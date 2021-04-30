@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.*;
 public class Vehiculo{
     static Vehiculo [][] arreglo_vehiculos;
     static int tamano;
@@ -6,7 +9,7 @@ public class Vehiculo{
     private String marca;
     private String color;
     private int valorComercial;
-    
+            
     public Vehiculo (){   
     } 
     
@@ -24,8 +27,12 @@ public class Vehiculo{
     }
     
         public  Vehiculo (String placa, String marca, String color){
-        Vehiculo veh = new Vehiculo (placa, marca, color, 30000000);
-        //System.out.println(veh.getPlaca());
+        //Vehiculo veh = new Vehiculo (placa, marca, color, 30000000);
+        this.placa = placa;
+        this.marca = marca;
+        this.color = color;
+        this.valorComercial = 30000000;
+        this.cantidad ++; 
 
     }
 
@@ -47,7 +54,68 @@ public class Vehiculo{
         }    
         return info;
     }
-
+    
+    public static String busquedaColor (String color){
+        String cars = "\n";
+        for(int i = 0; i<arreglo_vehiculos.length; i++){
+          for (int j = 0; j<arreglo_vehiculos[0].length; j++){
+            if (arreglo_vehiculos[i][j] != null){
+                if (arreglo_vehiculos[i][j].getColor().equalsIgnoreCase(color)){
+                cars = cars + "\n" + arreglo_vehiculos[i][j].toString();
+              }
+            }                             
+          }
+        }    
+        if (cars == "\n"){
+         cars = cars + "No existen carros de este color";  
+        }
+        return cars;
+    }  
+    
+    public ArrayList<Integer> ordenarvalorComercial (){
+        ArrayList<Integer> ovC = new ArrayList ();
+        for(int i = 0; i<arreglo_vehiculos.length; i++){
+          for (int j = 0; j<arreglo_vehiculos[0].length; j++){
+            if (arreglo_vehiculos[i][j] != null){
+             ovC.add(arreglo_vehiculos[i][j].getValorComercial());
+            }                             
+          }
+        }  
+        return ovC;
+    }
+    
+    public static String ordenVehiculo (){
+     String info = "";
+     int aux = 0;
+     Vehiculo veh2[] = new Vehiculo [cantidad];
+     for(int i = 0; i<arreglo_vehiculos.length; i++){
+          for (int j = 0; j<arreglo_vehiculos[0].length; j++){
+            if (arreglo_vehiculos[i][j] != null){
+              veh2 [aux] = arreglo_vehiculos [i][j];
+              aux++;
+            }                             
+          }
+        } 
+        vehiculoOrdenado(veh2);
+        for(int i = 0; i<cantidad; i++){
+           info = info + veh2[i].toString() + "\n";
+        } 
+        return info;
+    }
+    
+    public static void vehiculoOrdenado (Vehiculo[]veh2){
+     Vehiculo arreglo_aux[] = new Vehiculo[cantidad];
+     for(int i = 0; i<cantidad; i++){
+          for (int j = 0; j<cantidad -1; j++){
+            if (veh2[j].getValorComercial() > veh2[j+1].getValorComercial()){
+              arreglo_aux[j] = veh2 [j];
+              veh2 [j] = veh2 [j+1];
+              veh2 [j+1] = arreglo_aux[j];
+            }                             
+          }
+        } 
+    }
+    
     public static int cantidadVehiculos (){
        return cantidad;
     }

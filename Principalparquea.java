@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class Principalparquea{
    public static void main (String[]args){
@@ -22,7 +23,9 @@ public class Principalparquea{
            "4. Consultar la informacion de todos los vehiculos." + "\n" + 
            "5. Consultar la cantidad de vehiculos." + "\n" + 
            "6. Consultar el estado de un parqueadero." + "\n" + 
-           "7. Consultar el estado de todos los parqueaderos.");
+           "7. Consultar el estado de todos los parqueaderos." + "\n" +
+           "8. Consultar vehiculo por color." + "\n" + 
+           "9. Ordenar vehiculos por valor comercial.");
             int opcion = scannpe.nextInt();
             
             switch (String.valueOf(opcion)){
@@ -49,12 +52,15 @@ public class Principalparquea{
                         System.out.println(sensores.validacion (piso, espacio));
                         
                         if (sensores.validacion (piso, espacio) == ""){
-                            validacion = true;
+                            if(sensores.validarDisponibilidad(piso, espacio)){
+                                validacion = true;
+                            }else{
+                                System.out.println("Parqueadero ocupado");
+                            }   
                         }
                     }while (!validacion);
                    
-                    do{
-                        if (sensores.validarDisponibilidad(piso, espacio)){
+                    if (sensores.validarDisponibilidad(piso, espacio)){
                             System.out.println("Ingrese la placa");
                             scannpe.nextLine();
                             placa = scannpe.nextLine();
@@ -71,9 +77,9 @@ public class Principalparquea{
                             
                             System.out.println(carro.toString());
                             System.out.println(sensor.getEstado());
-                            validacion = true;
-                        }
-                    }while (!validacion);    
+                            
+                 }
+                       
                     
                     break;
                     
@@ -92,12 +98,15 @@ public class Principalparquea{
                         System.out.println(sensores.validacion (piso1, espacio1));
                         
                         if (sensores.validacion (piso1, espacio1) == ""){
-                            validacion1 = true;
+                            if(sensores.validarDisponibilidad(piso1, espacio1)){
+                                validacion1 = true;
+                            }else{
+                                System.out.println("Parqueadero ocupado");
+                            }   
                         }
                     }while (!validacion1);
                     
-                    do{
-                        if (sensores.validarDisponibilidad(piso1, espacio1)){
+                    if (sensores.validarDisponibilidad(piso1, espacio1)){
                             System.out.println("Ingrese la placa");
                             scannpe.nextLine();
                             placas = scannpe.nextLine();
@@ -116,9 +125,9 @@ public class Principalparquea{
                             
                             System.out.println(carro.toString());
                             System.out.println(sensor.getEstado());
-                            validacion1 = true;
-                        }
-                    }while (!validacion1);    
+                            
+                }
+                        
                     break;
                     
                     
@@ -147,7 +156,17 @@ public class Principalparquea{
                             validacion2 = true;
                         }
                     }while (!validacion2);
-                    System.out.println ("el estado del sensor es: " + sensores.arreglo_sensor[piso][espacio].toString());
+                        if (sensores.arreglo_sensor[piso][espacio]!=null){
+                      System.out.println ("El estado del sensor es: " + sensores.arreglo_sensor[piso][espacio].toString());
+                    }else{
+                        System.out.println ("El estado del sensor es disponible");
+                    if (sensores.validacion (piso, espacio) == ""){
+                            if(sensores.validarDisponibilidad(piso, espacio)){
+                                validacion = true;
+                            }else{
+                                System.out.println("Parqueadero ocupado");
+                            }   
+                        }}
                     break;
                     
                 case "7": 
@@ -155,7 +174,20 @@ public class Principalparquea{
                     System.out.println (sensores.sensoresEstado());
                 
                     break;
+                case "8":
+                    String color2;
+                    System.out.println ("Ingrese el color del Carro");
+                    scannpe.nextLine ();
+                    color2 = scannpe.nextLine ();
+                    System.out.println (parqueadero.busquedaColor(color2));
+                
+                break;
                     
+                case "9":
+                    System.out.println (parqueadero.ordenVehiculo());
+                    
+                    break;
+                   
                 default: System.out.println ("Comando incorrecto"); 
                     break;
          }
