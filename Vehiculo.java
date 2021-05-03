@@ -1,5 +1,4 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
+
 import java.util.*;
 public class Vehiculo{
     static Vehiculo [][] arreglo_vehiculos;
@@ -27,13 +26,7 @@ public class Vehiculo{
     }
     
         public  Vehiculo (String placa, String marca, String color){
-        //Vehiculo veh = new Vehiculo (placa, marca, color, 30000000);
-        this.placa = placa;
-        this.marca = marca;
-        this.color = color;
-        this.valorComercial = 30000000;
-        this.cantidad ++; 
-
+        this(placa, marca, color, 30000000);
     }
 
     public String toString (){
@@ -72,18 +65,7 @@ public class Vehiculo{
         return cars;
     }  
     
-    public ArrayList<Integer> ordenarvalorComercial (){
-        ArrayList<Integer> ovC = new ArrayList ();
-        for(int i = 0; i<arreglo_vehiculos.length; i++){
-          for (int j = 0; j<arreglo_vehiculos[0].length; j++){
-            if (arreglo_vehiculos[i][j] != null){
-             ovC.add(arreglo_vehiculos[i][j].getValorComercial());
-            }                             
-          }
-        }  
-        return ovC;
-    }
-    
+        
     public static String ordenVehiculo (){
      String info = "";
      int aux = 0;
